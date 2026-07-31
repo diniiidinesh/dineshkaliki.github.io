@@ -99,19 +99,26 @@ migration instead of two.
       directly without AI Studio if simpler
 - [ ] Confirm Movie Reviews / Writings status on Personal hub
 
-### Phase 1 — Colors & fonts only (current site, no structural change)
-- [ ] Self-host Plus Jakarta Sans, Merriweather, JetBrains Mono
-      (download woff2, add `fonts/` folder, `@font-face` rules in
-      `css/style.css`)
-- [ ] Replace color tokens in `css/style.css` with the table above
-      (both light and dark blocks)
-- [ ] Apply font-family assignments: headings/nav/buttons → Jakarta Sans,
-      body/tagline text → Merriweather, badges/tags → JetBrains Mono
-- [ ] Sanity-check dark mode specifically (AI Studio's dark palette is
-      new, hasn't been eyeballed in a browser yet)
-- [ ] No changes to index.html/about.html/work.html/apps.html/
-      personal.html/contact.html structure — only `css/style.css` and a
-      new `fonts/` folder should change in this phase
+### Phase 1 — Colors & fonts only (current site, no structural change) — DONE (2026-07-31)
+- [x] Self-host Plus Jakarta Sans, Merriweather, JetBrains Mono
+      (downloaded as 3 variable/static woff2 files into `fonts/`,
+      `@font-face` rules added at the top of `css/style.css`)
+- [x] Replace color tokens in `css/style.css` with the table above
+      (both light and dark blocks — dark is now the default, light
+      applies via `prefers-color-scheme: light`)
+- [x] Apply font-family assignments: headings/nav/buttons → Jakarta Sans
+      (body default), tagline/lead text → Merriweather, badges/tags/
+      wip-tag → JetBrains Mono
+- [x] Sanity-checked both light and dark mode via headless screenshots
+      (home page + personal page with cards/badges) — renders correctly
+- [x] No HTML structure changed — only `css/style.css` and the new
+      `fonts/` folder, exactly as planned. All 6 pages picked it up
+      automatically since they share one stylesheet.
+
+Still open from Phase 1's original scope (not blocking, deferred to
+Phase 0 answers): mobile-specific Merriweather type scale, spacing/
+radius/motion tokens beyond what already existed in the CSS, 2-vs-3
+font decision. Colors and font families are considered final.
 
 ### Phase 2 — Astro migration (bundle with Writings import)
 - [ ] Scaffold Astro project, port existing pages as-is first (no visual
