@@ -141,6 +141,47 @@ font decision. Colors and font families are considered final.
 - [ ] Personal hub: Writings content, confirm Movie Reviews status
 - [ ] Personal teaser link wired into About page
 
+### Phase 4 — RAG chat bot + voice bot ("talk to my portfolio")
+Goal: let visitors ask a bot questions and have it answer as/about
+Dinesh, both professionally (PM work, case studies) and personally
+(travel, writings, interests) — text chat first, voice as a later
+sub-phase.
+
+**Why this comes after Phase 3, not before:** RAG retrieves from real
+content. Running this against an empty/WIP site has nothing to answer
+from — the case studies, About copy, and Writings written in Phase 3
+*are* the corpus this phase indexes. Don't start Phase 4 until Phase 3
+content exists.
+
+**Why this can't live on GitHub Pages alone:** Pages only serves static
+files. A RAG bot needs server-side code (to embed the question, query a
+vector store, call an LLM) and a place to hold an API key that never
+reaches the browser. This means adding a small backend service
+alongside the static site — the portfolio pages and domain don't
+change, this is additive.
+
+- [ ] Pick a backend host for the bot API — Cloudflare Workers or Vercel
+      are the natural fit (generous free tier, deploys from git like
+      everything else here)
+- [ ] Pick a vector store — Cloudflare Vectorize, Pinecone free tier, or
+      a simple file-based store (corpus size here is small: resume +
+      case studies + writings is a few hundred chunks at most, doesn't
+      need enterprise infra)
+- [ ] Content pipeline: chunk + embed About/Work/Writings markdown from
+      the Phase 2 Astro content collections into the vector store
+- [ ] Backend endpoint: takes a question, retrieves relevant chunks,
+      calls the Claude API with them as context, returns an answer.
+      API key lives server-side only, never shipped to the browser.
+- [ ] Decide a rate limit / budget cap (e.g. N messages per visitor per
+      day) before shipping publicly — LLM calls cost money per request,
+      unlike static hosting
+- [ ] Chat widget on the site calling the backend endpoint
+- [ ] Ship and validate text chat end-to-end before starting voice
+- [ ] **Voice sub-phase** (separate, bigger lift — don't bundle with
+      text chat): add speech-to-text/text-to-speech (e.g. a Realtime
+      API) and a WebSocket/WebRTC audio loop on top of the same
+      RAG backend
+
 ## Non-negotiables to remember when resuming
 - Beacon privacy policy (`dineshkaliki.com/beacon/privacy/`) is tied to
   a live Play Store listing. Any deploy/build change must verify this
