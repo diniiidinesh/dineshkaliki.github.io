@@ -551,3 +551,28 @@ footer {
   line-height: 1.6;
   margin: 0;
 }
+
+/* Avatar photo */
+.avatar {
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  background: var(--card);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.avatar-lg { width: 160px; height: 160px; }
+.avatar-sm { width: 64px; height: 64px; border-width: 2px; }
+
+.intro-row {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.7s ease-out 0.1s forwards;
+}
+.intro-row .lead { margin: 0; text-align: left; }
+@media (max-width: 640px) {
+  .intro-row { flex-direction: column; text-align: center; }
+  .intro-row .lead { text-align: center; }
+}
