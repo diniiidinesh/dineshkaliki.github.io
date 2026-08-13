@@ -13,6 +13,27 @@
   a{color:#B4552D;text-decoration:none;}
   a:hover{color:#8f3f1e;}
   img{-webkit-user-drag:none;}
+
+  @media (max-width: 640px) {
+    article[style*="56px 8px"] { padding-left: 20px !important; padding-right: 20px !important; }
+    div[style*="padding:20px 40px"] { padding-left: 20px !important; padding-right: 20px !important; }
+    div[style*="padding:0 56px 46px"] { padding-left: 20px !important; padding-right: 20px !important; }
+    div[style*="padding:52px 56px 8px"] {
+      flex-direction: column !important;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      gap: 20px !important;
+    }
+    div[style*="padding:52px 56px 8px"] > div { flex: none !important; }
+    header[style*="align-items:baseline;gap:18px"] {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 6px !important;
+    }
+    div[style*="grid-template-columns:1"] { grid-template-columns: 1fr !important; }
+    div[style*="height:520px"] { height: 320px !important; }
+    h2[style*="font-size:62px"] { font-size: 34px !important; }
+  }
 </style>
 </head>
 <body>
