@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quest Engine: Brazil Pilot to Growth Lever — Dinesh Kumar Kaliki</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html">Dinesh Kumar Kaliki</a>
+    <ul>
+      <li><a href="../about.html">About</a></li>
+      <li><a class="active" href="../work.html">Work</a></li>
+      <li><a href="../apps.html">Apps</a></li>
+      <li><a href="../personal.html">Personal</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="wide">
+    <h1>Quest Engine: From Brazil Pilot to a Self-Serve Growth Lever</h1>
+    <p class="lead">A 0→1 gamification system built as the primary activation and retention lever for a market launch, then iterated hard post-launch based on what real usage revealed.</p>
+
+    <div class="case-meta">
+      <span><strong>Role:</strong> Product Manager</span>
+      <span><strong>Company:</strong> Loco</span>
+      <span><strong>Duration:</strong> Live since April 2025, ongoing iteration</span>
+      <span><strong>Tools:</strong> Retool, Amplitude, Metabase, CloudFront</span>
+    </div>
+
+    <div class="case-body">
+      <h2>The problem</h2>
+      <p>Loco needed an activation and retention lever for its Brazil launch — something that would get new users into a habit loop quickly, without leaning on push notifications, which are an easy crutch and a poor first impression.</p>
+
+      <h2>Approach</h2>
+      <p>I designed Quest Engine around two complementary mechanics: Short Quests (parallel, built for instant gratification) and Long Quests (sequential, built for habit formation). Rather than hard-coding tasks, I built the whole thing on a configurable Retool backend, so growth managers could self-serve on task type, duration, validity, and repetition criteria — for example, "watch X minutes of a stream" — without needing an engineer for every new campaign. Quests were also personalized per streamer, showing up contextually across live streams, streamer pages, quest pages, and category pages, and filtered by country using CloudFront headers so campaigns and rewards could be tuned per market. The reward economy itself mixed time-spent currency with purchased currency, borrowing engagement-loop principles from gaming economy design.</p>
+
+      <h2>What shipped for the MVP</h2>
+      <p>The MVP went live to Brazil on April 29, 2025, covering configurable tasks (watch stream, chat/sticker, follow, app launch), a reward claim flow spanning in-app Gold and external rewards like Amazon Pay gift cards, and segment-based targeting — all owned end-to-end, from the user-facing task dashboard and progress states down to the growth-ops tooling for creating quests, segment templates, and reward codes. It landed <strong>5% task completion in pilot with zero push notifications</strong><span class="case-metric">Hard</span>.</p>
+
+      <h2>Iterating after launch</h2>
+      <p>Shipping the MVP wasn't the end of the work — real usage surfaced real friction, and I went through six rounds of iteration rather than letting the feature sit:</p>
+      <ul>
+        <li>Redesigned the task-card timer and CTA logic across 6 lifecycle states, fixing an ambiguity users kept hitting right after completing a task</li>
+        <li>Unified multi-task rendering into a single carousel with deterministic, status-based ordering</li>
+        <li>Moved reward claiming inline instead of redirecting to a separate page, eliminating a two-back-press navigation trap that had crept in with an earlier change</li>
+        <li>Cut Amplitude event volume by switching from near-continuous progress tracking to five bucketed completion bands — a pure cost optimization with no loss of insight<span class="case-metric">Hard</span></li>
+        <li>Shipped a Metabase report giving the growth team a direct, self-serve input for sizing reward windows, instead of relying on ad hoc requests to engineering</li>
+        <li>Added Retool-based cloning for quests and tasks, cutting the time needed to roll out multi-country and multi-language variants</li>
+      </ul>
+
+      <h2>What I'd flag in an interview</h2>
+      <p>The MVP metric (5% completion) is the headline number, but the more interesting story is the iteration discipline afterward — particularly the state-machine redesign, which came directly from watching where users got stuck, and the Amplitude cost optimization, which is the kind of unglamorous but real engineering-adjacent thinking that rarely makes it onto a resume bullet but matters a lot at scale.</p>
+    </div>
+
+    <div class="case-nav">
+      <a href="subscriptions.html">&larr; Subscriptions</a>
+      <a href="timeline-missions.html">Timeline Missions &rarr;</a>
+    </div>
+  </main>
+
+  <footer>&copy; 2026 Dinesh Kumar Kaliki</footer>
+</body>
+</html>

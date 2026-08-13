@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building Subscriptions from Zero — Dinesh Kumar Kaliki</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html">Dinesh Kumar Kaliki</a>
+    <ul>
+      <li><a href="../about.html">About</a></li>
+      <li><a class="active" href="../work.html">Work</a></li>
+      <li><a href="../apps.html">Apps</a></li>
+      <li><a href="../personal.html">Personal</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="wide">
+    <h1>Building Subscriptions from Zero, Across Six Markets</h1>
+    <p class="lead">A multi-phase 0→1 monetization system spanning content gating, flexible creator pricing, payment recovery, and moderation — built for a live-streaming and esports platform.</p>
+
+    <div class="case-meta">
+      <span><strong>Role:</strong> Product Manager</span>
+      <span><strong>Company:</strong> Loco</span>
+      <span><strong>Duration:</strong> 6+ months, ongoing ownership</span>
+      <span><strong>Tools:</strong> Stripe, Retool, Amplitude</span>
+    </div>
+
+    <div class="case-body">
+      <h2>The problem</h2>
+      <p>Loco had no subscription monetization layer. Creators had no recurring revenue mechanism tied to the platform, and there was no infrastructure for recurring payments, tiered access, or the moderation and compliance work that comes with handling money across markets. This needed to be built from zero — not a redesign of an existing system.</p>
+
+      <h2>Approach</h2>
+      <p>I owned the system end-to-end across 6+ months of development, shipping a multi-phase MVP: content gating across streams, VODs, and chat; badges and stickers; free preview; and moderator access controls — integrated with Stripe for recurring payments. Rather than fixing creator pricing centrally, I introduced a web-based flexible pricing tool built on Retool, letting streamers set and adjust their own subscription price within tier-specific bounds defined by the supply team.</p>
+
+      <h2>The hard decisions</h2>
+      <p><strong>Pricing changes, done carefully.</strong> Mid-subscription price increases are one of the fastest ways to spike churn if handled wrong. I evaluated five different pricing strategies against industry churn benchmarks before landing on a tier-upgrade-triggered model, projecting 80–90% retention and +26% revenue at 90 days<span class="case-metric">Projected</span>.</p>
+      <p><strong>Regulation isn't uniform.</strong> I researched consumer protection law across Turkey, Germany, South Korea, India, Brazil, and other target markets, and found consent requirements for price changes varied meaningfully by jurisdiction. Rather than build one flow and patch exceptions later, I split the architecture upfront into explicit-consent and deemed-consent paths, with a 30-day grace period enforced via Stripe Scheduler.</p>
+      <p><strong>Payments fail — plan for it.</strong> I built a recovery system distinguishing soft declines (insufficient funds, network issues) from hard declines (invalid or stolen cards), each routed through Stripe webhooks into automated retry logic and localized communication — 9 email templates translated across 13 languages — to reduce involuntary churn rather than losing subscribers to a failed card silently.</p>
+      <p><strong>Moderation and monetization interact.</strong> Streamers needed to grant moderation access to subscriber-only streams without handing out paid perks like stickers or badges — so I designed granular, per-moderator access controls, benchmarked against Twitch, Kick, and YouTube Live. On the safety side, I added subscription-aware moderation modals that surface a subscriber's badge during mute/timeout actions, so moderators can make an informed call before muting a paying subscriber.</p>
+
+      <h2>What shipped</h2>
+      <ul>
+        <li>Full subscription MVP live in multiple phases — content gating, badges, stickers, flexible pricing, free preview, moderator controls<span class="case-metric">Hard</span></li>
+        <li>Streamer-facing analytics dashboard: day/week/month views of subscriber growth, churn, revenue, and viewer-to-subscriber ratio<span class="case-metric">Hard</span></li>
+        <li>A 34-signal subscription instrumentation framework, part of a broader 266-signal data architecture spanning 34 feature areas platform-wide<span class="case-metric">Hard</span></li>
+        <li>Country-specific consent flows and grace-period handling across 6+ markets</li>
+        <li>Payment recovery system live on Stripe webhooks with localized, lifecycle-aware communication</li>
+      </ul>
+
+      <h2>What I'd flag in an interview</h2>
+      <p>The regulatory research wasn't a compliance afterthought — it shaped the core architecture from day one, which is the main reason the consent-flow split held up cleanly across markets instead of needing a rework later. The instrumentation work (the 34-signal framework) also came with a quieter but important step: auditing existing Amplitude events before building on top of them, and catching property mismatches and dead events that would have quietly corrupted the new signal set.</p>
+    </div>
+
+    <div class="case-nav">
+      <a href="../work.html">&larr; All case studies</a>
+      <a href="quest-engine.html">Quest Engine &rarr;</a>
+    </div>
+  </main>
+
+  <footer>&copy; 2026 Dinesh Kumar Kaliki</footer>
+</body>
+</html>

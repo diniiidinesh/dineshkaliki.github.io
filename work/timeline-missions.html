@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timeline Missions: Moving Retention Across Seven Games — Dinesh Kumar Kaliki</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html">Dinesh Kumar Kaliki</a>
+    <ul>
+      <li><a href="../about.html">About</a></li>
+      <li><a class="active" href="../work.html">Work</a></li>
+      <li><a href="../apps.html">Apps</a></li>
+      <li><a href="../personal.html">Personal</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="wide">
+    <h1>Timeline Missions: Moving Retention Across Seven Games</h1>
+    <p class="lead">Leading an internal gamification and customer data platform serving 100mn+ users, and shipping the feature that moved retention, player value, and revenue — without breaking the games it touched.</p>
+
+    <div class="case-meta">
+      <span><strong>Role:</strong> Product Manager I</span>
+      <span><strong>Company:</strong> Junglee Games (Flutter)</span>
+      <span><strong>Duration:</strong> 18 months, Apr 2022 – Nov 2023</span>
+      <span><strong>Tools:</strong> Internal CDP/Audience platform, in-house A/B testing framework</span>
+    </div>
+
+    <div class="case-body">
+      <h2>The platform</h2>
+      <p>I owned Audience, Junglee Games' internal gamification and customer data platform — serving 100mn+ gamers across seven games, powering 2,000+ campaigns and funnels a month, with a team of 4 developers and 2 associate product managers. The platform replaced a third-party tool (CleverTap) after I built the roadmap and business case for an in-house replacement, saving ₹2 Crores annually<span class="case-metric">Hard</span> while giving us an extensible architecture built for the platform's own needs rather than a vendor's.</p>
+
+      <h2>The problem</h2>
+      <p>Timeline Missions started as a problem, not a feature request: the Rummy product marketing manager flagged that engagement wasn't sticky enough across sessions, and there was no gamification mechanic giving users a reason to come back day after day, in a way that scaled across games with very different economics.</p>
+
+      <h2>Approach</h2>
+      <p>Rather than building the full system speculatively, I built a proof of concept on top of an existing system — Adaptive Missions — to de-risk the idea before committing engineering time to a ground-up build. The design used day-gated progression to build a habit loop. The trickiest part wasn't the mechanic itself but a revenue-leakage risk it created: a user active in one mission shouldn't be able to enter a second, overlapping mission, or the platform would effectively be paying out twice for the same engagement. I designed the eligibility logic explicitly around that constraint, and because the feature touched both Howzat and Rummy — two client teams with different stakes — I took it through sign-off from both before shipping, rather than shipping to one and retrofitting the other.</p>
+
+      <h2>Outcome</h2>
+      <p>Timeline Missions elevated Retention up to 20%, Player Value up to 17.2%, and Net Gaming Revenue up to 21.4% across games<span class="case-metric">Hard</span>. The more meaningful numbers are cohort-specific rather than a single blended figure:</p>
+      <ul>
+        <li>19.8% D14 retention lift for new users, 21.4% D7 NGR/user for existing users, on Poker</li>
+        <li>8.9% D21 retention growth, 17.2% D21 player-value increase, 3% D21 NGR rise, for Rummy on Howzat</li>
+        <li>3% D14 retention uplift and 1.2% D14 player-value uplift for Fantasy Quests on Howzat</li>
+      </ul>
+
+      <h2>What I'd flag in an interview</h2>
+      <p>The headline "up to 20%" number is real, but I'd rather lead with the cohort breakdown in a conversation — it's the more honest and more useful version of the result, and it's what let us understand why new and existing users responded differently. The de-risking step (building on Adaptive Missions rather than from scratch) and the cross-team sign-off process are also worth more than they look on a resume line: they're the difference between a feature that ships once and a feature that ships without a rollback three weeks later.</p>
+    </div>
+
+    <div class="case-nav">
+      <a href="quest-engine.html">&larr; Quest Engine</a>
+      <a href="../work.html">All case studies &rarr;</a>
+    </div>
+  </main>
+
+  <footer>&copy; 2026 Dinesh Kumar Kaliki</footer>
+</body>
+</html>

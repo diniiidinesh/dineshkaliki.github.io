@@ -266,3 +266,139 @@ footer {
   font-size: 0.8rem;
   padding: 2em 6vw 3em;
 }
+
+/* Case study cards on Work index */
+.case-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.8em 1.7em;
+  text-decoration: none;
+  color: var(--fg);
+  text-align: left;
+  display: block;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.case-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px -12px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.case-card .case-company {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.case-card h3 {
+  margin: 0.4em 0 0.5em;
+  font-size: 1.3rem;
+}
+.case-card p {
+  margin: 0 0 1em;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.case-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  border-top: 1px solid var(--border);
+  padding-top: 1em;
+}
+.case-trio div span {
+  display: block;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.3em;
+}
+.case-trio div p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--fg);
+}
+@media (max-width: 640px) {
+  .case-trio { grid-template-columns: 1fr; }
+}
+
+/* Case study detail page */
+.case-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em 1.5em;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1em 0;
+  margin: 1.5em 0 2.5em;
+}
+.case-meta strong { color: var(--fg); font-weight: 600; }
+
+.case-body {
+  text-align: left;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.case-body h2 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.4rem;
+  margin: 2.2em 0 0.7em;
+  color: var(--fg);
+}
+.case-body h2:first-child { margin-top: 0; }
+.case-body p {
+  font-family: "Merriweather", Georgia, serif;
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--fg);
+  margin: 0 0 1.1em;
+}
+.case-body ul {
+  font-family: "Merriweather", Georgia, serif;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--fg);
+  padding-left: 1.3em;
+  margin: 0 0 1.1em;
+}
+.case-body li { margin-bottom: 0.5em; }
+.case-metric {
+  display: inline-block;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 0.15em 0.6em;
+  margin-left: 0.4em;
+  vertical-align: middle;
+}
+
+.case-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  max-width: 720px;
+  margin: 3em auto 0;
+  padding-top: 1.5em;
+  border-top: 1px solid var(--border);
+}
+.case-nav a {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+}
+.case-nav a:hover { color: var(--accent); }
