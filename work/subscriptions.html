@@ -29,7 +29,7 @@
     <div class="case-meta">
       <span><strong>Role:</strong> Product Manager</span>
       <span><strong>Company:</strong> Loco</span>
-      <span><strong>Duration:</strong> 6+ months, ongoing ownership</span>
+      <span><strong>Duration:</strong> Sep 2024 – May 2026</span>
       <span><strong>Tools:</strong> Stripe, Retool, Amplitude</span>
     </div>
 
@@ -41,10 +41,15 @@
       <p>I owned the system end-to-end across 6+ months of development, shipping a multi-phase MVP: content gating across streams, VODs, and chat; badges and stickers; free preview; and moderator access controls — integrated with Stripe for recurring payments. Rather than fixing creator pricing centrally, I introduced a web-based flexible pricing tool built on Retool, letting streamers set and adjust their own subscription price within tier-specific bounds defined by the supply team.</p>
 
       <h2>The hard decisions</h2>
-      <p><strong>Pricing changes, done carefully.</strong> Mid-subscription price increases are one of the fastest ways to spike churn if handled wrong. I evaluated five different pricing strategies against industry churn benchmarks before landing on a tier-upgrade-triggered model, projecting 80–90% retention and +26% revenue at 90 days<span class="case-metric">Projected</span>.</p>
       <p><strong>Regulation isn't uniform.</strong> I researched consumer protection law across Turkey, Germany, South Korea, India, Brazil, and other target markets, and found consent requirements for price changes varied meaningfully by jurisdiction. Rather than build one flow and patch exceptions later, I split the architecture upfront into explicit-consent and deemed-consent paths, with a 30-day grace period enforced via Stripe Scheduler.</p>
       <p><strong>Payments fail — plan for it.</strong> I built a recovery system distinguishing soft declines (insufficient funds, network issues) from hard declines (invalid or stolen cards), each routed through Stripe webhooks into automated retry logic and localized communication — 9 email templates translated across 13 languages — to reduce involuntary churn rather than losing subscribers to a failed card silently.</p>
       <p><strong>Moderation and monetization interact.</strong> Streamers needed to grant moderation access to subscriber-only streams without handing out paid perks like stickers or badges — so I designed granular, per-moderator access controls, benchmarked against Twitch, Kick, and YouTube Live. On the safety side, I added subscription-aware moderation modals that surface a subscriber's badge during mute/timeout actions, so moderators can make an informed call before muting a paying subscriber.</p>
+
+      <h2>Pricing: a reframe, not just a model</h2>
+      <p>The question as handed to me was narrow: when a creator's price rises, do existing subscribers migrate to the new price, or keep the old one? The team had been debating the migration mechanic for weeks. Working through it, I found that question was close to a non-decision — at Loco's 95/5 creator revenue split, the platform holds roughly 5% of the upside but absorbs effectively all of the churn, support, and regulatory cost. I named that tension explicitly and optimized for creator earnings, since that reflected the actual business intent, rather than defaulting to whichever mechanic felt safest.</p>
+      <p>With no historical subscription data on a pre-scale product, I separated assumption-free arithmetic from modeled estimates. Raise price by a factor <em>r</em>, and revenue is flat at exactly a <code>1 − 1/r</code> subscriber loss — that holds regardless of any churn assumption<span class="case-metric">Hard</span>. From there, I modeled the actual churn by decomposing it into three named mechanisms — notification-driven attrition, price sensitivity, and consent-flow abandonment — each mapped to a distinct product lever, and ran the conclusion across low/mid/high parameter bands so it held even under adverse assumptions.</p>
+      <p><strong>What I got wrong, the first time.</strong> I'd anchored the churn benchmark on platform-level subscription churn (Netflix-style), when Loco's product is a per-creator channel subscription — a structurally different comparable with meaningfully higher churn. My first model also had grandfathering (keeping existing subscribers at their old price) winning long-term, but only because I'd assumed new-subscriber growth would offset the forgone revenue — when the price increase itself is what suppresses that growth. Correcting both, grandfathering lost at every horizon, and two of my original five "pricing strategies" turned out not to be real options at all — they were artifacts of other platforms' technical constraints, and including them had flattered my own recommendation by comparison.</p>
+      <p>The corrected model found that small price steps lose money: below roughly 8% in standard markets, and roughly 46% in consent-required markets, the notification cost alone exceeds the gain<span class="case-metric">Projected</span>. Consent-required markets need roughly 5× the price step to reach the same breakeven. And consent-completion rate turned out to be a pricing lever in its own right — moving it from ~55% to ~85% was worth roughly as much as doubling the price step, at no cost to the subscriber. This is pre-launch modeling with no realized revenue outcome yet<span class="case-metric">Self-reported</span> — what changed is where engineering effort went: from migration-mechanic logic to step calibration and consent-flow conversion.</p>
 
       <h2>What shipped</h2>
       <ul>
@@ -53,11 +58,31 @@
         <li>A 34-signal subscription instrumentation framework, part of a broader 266-signal data architecture spanning 34 feature areas platform-wide<span class="case-metric">Hard</span></li>
         <li>Country-specific consent flows and grace-period handling across 6+ markets</li>
         <li>Payment recovery system live on Stripe webhooks with localized, lifecycle-aware communication</li>
+        <li>Corrected pricing model — breakeven identity, decomposed churn mechanisms, and consent-conversion framing — redirecting engineering effort toward the levers that actually mattered<span class="case-metric">Self-reported</span></li>
       </ul>
 
-      <h2>What I'd flag in an interview</h2>
-      <p>The regulatory research wasn't a compliance afterthought — it shaped the core architecture from day one, which is the main reason the consent-flow split held up cleanly across markets instead of needing a rework later. The instrumentation work (the 34-signal framework) also came with a quieter but important step: auditing existing Amplitude events before building on top of them, and catching property mismatches and dead events that would have quietly corrupted the new signal set.</p>
+      <details>
+        <summary>Planned but not shipped</summary>
+        <h4>Cancel auto-renew &amp; reactivation</h4>
+        <p>Designed a cancel-and-reactivate flow using Stripe's <code>cancel_at_period_end</code> API, preserving original renewal dates on reactivation, with edge cases defined for mid-block cancellations, post-expiry resubscriptions, and streak preservation for future gamification. PRD complete; not prioritized against other roadmap items at the time.</p>
+        <h4>Moderation-based subscription pausing</h4>
+        <p>Designed a moderation-triggered pausing system: auto-pause active Stripe subscriptions on a streamer block to prevent subscriber charges during a violation, auto-resume with retroactive invoice collection on unblock, and auto-cancel after 30+ day blocks, with strike-based escalation. PRD complete; didn't clear the prioritization bar against other Trust &amp; Safety work.</p>
+        <h4>Android subscription flow</h4>
+        <p>Designed a cross-platform Android flow routing users through email-to-mWeb-to-Stripe checkout to bypass Play Store billing fees, with OTP authentication, deep-link return to app, and handling for interrupted multi-session flows. PRD complete; Android represented a smaller share of subscription revenue than iOS/web at the time, so it didn't get engineering allocation.</p>
+      </details>
     </div>
+
+    <!-- What I'd flag in an interview (kept for interview prep, not shown on the public page):
+    The regulatory research wasn't a compliance afterthought — it shaped the core architecture
+    from day one, which is the main reason the consent-flow split held up cleanly across markets
+    instead of needing a rework later. The instrumentation work (the 34-signal framework) also
+    came with a quieter but important step: auditing existing Amplitude events before building on
+    top of them, and catching property mismatches and dead events that would have quietly
+    corrupted the new signal set. On pricing specifically: the retraction is an asset, not a
+    liability — "I'd benchmarked against platform subscriptions when our product was a per-creator
+    subscription, caught it, and rebuilt the model" demonstrates more judgement than the original
+    bullet ever did. Have it ready rather than hoping it doesn't come up. -->
+
 
     <div class="case-nav">
       <a href="../work.html">&larr; All case studies</a>

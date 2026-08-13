@@ -402,3 +402,84 @@ footer {
   text-decoration: none;
 }
 .case-nav a:hover { color: var(--accent); }
+
+/* Timeline (About page) */
+.timeline {
+  max-width: 720px;
+  margin: 2.5em auto 0;
+  text-align: left;
+  border-left: 2px solid var(--border);
+  padding-left: 1.8em;
+}
+.timeline-item {
+  position: relative;
+  padding-bottom: 2em;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -2.31em;
+  top: 0.35em;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+}
+.timeline-date {
+  display: block;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.3em;
+}
+.timeline-item h3 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.05rem;
+  margin: 0 0 0.3em;
+  color: var(--fg);
+}
+.timeline-item p {
+  font-family: "Merriweather", Georgia, serif;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Collapsible section (details/summary) */
+.case-body details {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.9em 1.2em;
+  margin: 2em 0;
+}
+.case-body details summary {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--fg);
+  cursor: pointer;
+  list-style: none;
+}
+.case-body details summary::-webkit-details-marker { display: none; }
+.case-body details summary::before {
+  content: "+";
+  display: inline-block;
+  width: 1.2em;
+  color: var(--accent);
+  font-family: "JetBrains Mono", monospace;
+}
+.case-body details[open] summary::before { content: "\2212"; }
+.case-body details[open] summary { margin-bottom: 0.8em; }
+.case-body details h4 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1rem;
+  margin: 1.2em 0 0.4em;
+  color: var(--fg);
+}
+.case-body details h4:first-of-type { margin-top: 0; }
+.case-body details p { font-size: 0.95rem; }
