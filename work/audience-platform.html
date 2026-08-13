@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audience Platform: Replacing CleverTap — Dinesh Kumar Kaliki</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html">Dinesh Kumar Kaliki</a>
+    <ul>
+      <li><a href="../about.html">About</a></li>
+      <li><a class="active" href="../work.html">Work</a></li>
+      <li><a href="../apps.html">Apps</a></li>
+      <li><a href="../personal.html">Personal</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="wide">
+    <h1>Audience Platform: Replacing CleverTap and Building the Growth Rails</h1>
+    <p class="lead">Owning the internal gamification and lifecycle platform seven game teams ran on — from the vendor-replacement business case through the risk and reliability work that kept a 100mn+ user system trustworthy.</p>
+
+    <div class="case-meta">
+      <span><strong>Role:</strong> Product Manager I, Audience Platform</span>
+      <span><strong>Company:</strong> Junglee Games (Flutter Entertainment)</span>
+      <span><strong>Duration:</strong> Apr 2022 – Nov 2023</span>
+      <span><strong>Team:</strong> 4 developers, 2 APMs, 120+ internal platform users</span>
+    </div>
+
+    <div class="case-body">
+      <h2>The problem</h2>
+      <p>Junglee's seven game teams ran their entire marketing and lifecycle stack — segmentation, push/SMS/WhatsApp/in-app communication, A/B testing, gamification — on CleverTap, a third-party tool with real limits: it capped A/B testing at the industry-standard 4 variants, and it came with an ongoing licensing cost for capability that didn't fit how differently each of the seven games needed to run their campaigns.</p>
+
+      <h2>Approach</h2>
+      <p>After user research and competitive analysis, I built the roadmap to replace CleverTap with an in-house platform — not a like-for-like clone, but a fully extensible architecture designed to support any custom marketing interface, so new capability could be added without hitting the same ceiling again. I owned the lifecycle end-to-end: requirements gathering, development including vendor migration, deployment, and adoption across marketing, product marketing, and product teams on all seven games.</p>
+
+      <h2>What shipped</h2>
+      <ul>
+        <li>Full CleverTap replacement, saving ₹2 Crores annually<span class="case-metric">Hard</span></li>
+        <li>20% increase in marketing efficiency and effectiveness from owning the full lifecycle rather than handing off between teams<span class="case-metric">Hard</span></li>
+        <li>An A/B testing framework supporting an unlimited number of variants — against an industry standard of 4 — running ~50 concurrent tests at any time across 2,000+ campaigns a month<span class="case-metric">Hard</span></li>
+        <li>Initial SaaS-style platform revamp, optimizing UI layouts in the most-used components to reduce mistakes and drive adoption<span class="case-metric">Projected — 30% adoption increase</span></li>
+      </ul>
+
+      <h2>The risk and reliability work</h2>
+      <p>Owning a platform that 120+ people used to reach 100mn+ players meant the interesting product decisions weren't just growth features — several of the most consequential ones were about preventing the platform from hurting the business it was meant to grow.</p>
+      <p><strong>Maker Checker Flow.</strong> Multiple incidents forced this: an SMS pipeline overload, and separately a campaign that went out to 1.7 crore users on the wrong dates, which could have cost roughly ₹17 lakhs had it not been caught. A first fix — calculating user-base size before a campaign saved, with a 5-lakh-plus threshold — got rolled back for being too slow at query time. The system that stuck used per-game user-count and cost thresholds, requiring managerial approval on high-impact campaigns before they could fire<span class="case-metric">Projected — ₹40+ lakhs/quarter</span>.</p>
+      <p><strong>Role-Based Access Control.</strong> A fraud incident — an employee moved ₹32+ lakhs into a game wallet using a preview option not meant for that — forced a full access-control revamp: roles expanded from 3 (Viewer, Creator, Admin) to 5, every existing user's role was reassigned, and login moved from username/password to SSO<span class="case-metric">Risk mitigated — ₹30+ lakhs</span>.</p>
+      <p><strong>Communication Categories.</strong> Users were receiving up to 14 communications a day across marketing, product marketing, and product teams — a spam problem made worse by Howzat's super-app structure hosting multiple games at once. I designed a tagging system that throttled communications per user per category per day<span class="case-metric">Hard — ₹5 lakhs/month + NPS increase</span>.</p>
+      <p><strong>Product Sanity Alerts.</strong> Roughly 50 automated alerts for proactive issue detection, catching underperforming or misconfigured campaigns before they burned budget or leaked revenue<span class="case-metric">Hard — 32% improvement in Campaign Delivery Success</span>.</p>
+
+      <h2>Mission Nudges</h2>
+      <p>Alongside Timeline Missions, I built Mission Nudges — context-aware, automated messaging timed to specific mission stages rather than generic reminders<span class="case-metric">Hard — 40% MACU engagement, 20% MACU completion</span>.</p>
+
+      <h2>Platform reliability and team</h2>
+      <p>I guided a team of 4 developers and mentored 2 associate product managers, serving 120+ active platform users across seven game teams with almost no documentation or formal training in the platform's early days. I reduced user-reported issues by 90% through targeted training, cross-team mediation, and advocating for the user's point of view directly in development — becoming, informally, the go-to person for Audience as new teams (a new Poker team, entirely reliant on the platform) came online<span class="case-metric">Hard</span>. That was recognized with a Top Rookie award, cited for agility, precise requirement detailing, and consistent follow-through on issues raised across the platform.</p>
+    </div>
+
+    <div class="case-nav">
+      <a href="timeline-missions.html">&larr; Timeline Missions</a>
+      <a href="../work.html">All case studies &rarr;</a>
+    </div>
+  </main>
+
+  <footer>&copy; 2026 Dinesh Kumar Kaliki</footer>
+</body>
+</html>
