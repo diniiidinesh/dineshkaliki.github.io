@@ -182,6 +182,12 @@ change, this is additive.
       API) and a WebSocket/WebRTC audio loop on top of the same
       RAG backend
 
+### Backlog — small items, not urgent
+- [ ] Per-page Open Graph images (currently one shared `images/og-image.png`
+      across every page — works fine, but ideally Work case studies would
+      show page-specific preview cards instead of the generic name/role/chip
+      card). Needs either per-page generated images or a template approach.
+
 ## Non-negotiables to remember when resuming
 - Beacon privacy policy (`dineshkaliki.com/beacon/privacy/`) is tied to
   a live Play Store listing. Any deploy/build change must verify this
