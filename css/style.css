@@ -244,7 +244,8 @@ main.wide p.lead { margin: 0 0 1em; }
 .links {
   margin-top: 2.5em;
   display: flex;
-  gap: 1.5em;
+  gap: 1em;
+  align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   opacity: 0;
@@ -252,13 +253,26 @@ main.wide p.lead { margin: 0 0 1em; }
 }
 main.wide .links { justify-content: flex-start; }
 .links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   color: var(--muted);
   text-decoration: none;
-  font-size: 0.95rem;
-  border-bottom: 1px solid transparent;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
-.links a:hover { color: var(--fg); border-color: var(--accent-hover); }
+.links a:hover {
+  color: var(--accent);
+  background-color: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+.links a svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  display: block;
+}
 
 footer {
   text-align: center;
