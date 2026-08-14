@@ -196,3 +196,9 @@ change, this is additive.
   `dineshkaliki.github.io` repo should ever claim it in GitHub Pages
   settings (this bit us once already with `beacon-site` and
   `travel2026june`).
+- **`sitemap.xml` must stay in sync with the site.** Whenever a page is
+  added, removed, or its URL changes (new case study, new Work/Apps/
+  Personal content, a page moved), update `sitemap.xml` in the same
+  change — don't treat it as a separate followup. `robots.txt` itself
+  rarely needs edits (it's just `Allow: /` + the sitemap pointer) unless
+  a future page genuinely needs to be excluded from crawling.
