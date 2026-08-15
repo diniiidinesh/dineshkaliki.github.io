@@ -165,13 +165,15 @@ consent banner needed), free, and the domain's already on Cloudflare so
 it's not really adding a new third party. Gives page-level breakdown
 (top pages, referrers), which is what was asked for over just a raw
 visitor count.
-- [ ] Dinesh creates a Web Analytics site in the Cloudflare dashboard,
-      grabs the JS snippet/token
-- [ ] Claude adds the snippet to every page (same pattern as favicon/OG
-      tags — one shared insertion point, not templated, so it's a
-      find-and-replace across all HTML files)
-- [ ] Verify it's tracking (Cloudflare dashboard shows hits) before
-      considering this done
+- [x] Dinesh created a Web Analytics site in the Cloudflare dashboard,
+      grabbed the manual JS snippet/token (DNS is grey-cloud/DNS-only
+      for the GitHub Pages cert, so "Automatic setup" doesn't work —
+      manual snippet is required, not optional, for this domain)
+- [x] Snippet added to all 14 pages (main site + both Work sub-pages +
+      Travel index/trip page + both Beacon legal pages) — full picture,
+      not just the portfolio pages
+- [ ] Verify it's tracking (Cloudflare dashboard shows hits) — check
+      this once traffic has had a chance to come in
 
 ### Phase 4 — RAG chat bot + voice bot ("talk to my portfolio")
 Goal: let visitors ask a bot questions and have it answer as/about
