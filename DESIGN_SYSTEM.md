@@ -236,3 +236,20 @@ change, this is additive.
   change — don't treat it as a separate followup. `robots.txt` itself
   rarely needs edits (it's just `Allow: /` + the sitemap pointer) unless
   a future page genuinely needs to be excluded from crawling.
+- **DNS for `dineshkaliki.com` stays "DNS only" (grey cloud) in
+  Cloudflare — do not proxy it (orange cloud), even to fix an unrelated
+  problem.** Reasoning: GitHub Pages issues and auto-renews its own SSL
+  certificate, and needs to directly verify the domain resolves to
+  GitHub's servers to do that — both at initial setup and on every
+  renewal (~90 days). If the domain is proxied, that verification can
+  fail. The dangerous part is *renewal*, not setup: a renewal failure
+  doesn't show up immediately, it shows up ~90 days later as a sudden
+  site-wide HTTPS failure with zero warning beforehand — discovered by
+  a visitor (e.g. a recruiter), not by us. This already happened to be
+  the reason Cloudflare Web Analytics needed manual setup with
+  `auto_install` disabled (2026-08-15) rather than the "Automatic"
+  proxy-based install — that's the accepted trade-off, not a bug to
+  fix by proxying. Only reconsider proxying if something genuinely
+  needs it (DDoS protection, edge caching, WAF) and only after
+  deliberately re-weighing this risk — never as a quick fix for an
+  unrelated tool.
