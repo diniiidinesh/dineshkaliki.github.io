@@ -1,9 +1,20 @@
 # Design System & Redesign — Working Notes
 
-Status as of 2026-07-31: parked, picking back up later. This file is the
-single source of truth for what's decided, what's still open, and the
-order to tackle things in. Nothing below has been implemented in the CSS
-yet — current live site still uses the original blue/dark palette.
+**This is a living document, not a one-time plan.** The whole site —
+IA, philosophy, design system, tooling choices — is still WIP and will
+keep changing. Whenever a decision here changes, gets superseded, or a
+phase actually ships, update this file in the same session, not as a
+followup. Stale docs are worse than no docs — if something below
+contradicts the live site, fix the doc, don't just note the drift.
+
+Status as of 2026-08-15: Phase 1 (colors/fonts) shipped. Work now has 4
+real case studies (not the placeholder 2-3 originally planned). About
+has a full career timeline + "Beyond the resume" + profile photo.
+Favicon, Open Graph tags, robots.txt/sitemap.xml, icon-based social
+links, and email-hover tooltips are all live. Astro migration (Phase 2)
+has NOT happened — still hand-written HTML/CSS, and that's fine per the
+original reasoning below, revisit only when Writings/case-study volume
+actually makes it painful.
 
 ## Decided
 
@@ -134,12 +145,33 @@ font decision. Colors and font families are considered final.
       post-migration
 
 ### Phase 3 — Content
-- [ ] About Me copy + resume PDF
-- [ ] Work case studies (from resume, Dinesh to review/edit each)
-- [ ] Beacon app placement executed per Phase 0 decision
-- [ ] Automations card(s)
-- [ ] Personal hub: Writings content, confirm Movie Reviews status
-- [ ] Personal teaser link wired into About page
+- [x] About Me copy + career timeline (school through Loco, expandable
+      detail per entry) + "Beyond the resume" highlights + profile photo
+- [x] Work case studies — shipped 4, not the originally-scoped 2-3:
+      Audience Platform (Featured), Timeline Missions, Subscriptions,
+      Quest Engine. Ordered featured-first, then chronological per
+      company (Junglee before Loco).
+- [ ] Beacon app placement — still not decided/executed (Apps page is
+      still an empty WIP stub)
+- [ ] Automations card(s) — not started
+- [ ] Personal hub: Writings content, confirm Movie Reviews status —
+      not started, Personal page currently only has Travel live
+- [x] Personal teaser link wired into About page ("Also travel, and
+      occasional writing — on the Personal page")
+
+### Analytics — DONE (2026-08-15)
+Cloudflare Web Analytics chosen over Google Analytics: cookieless (no
+consent banner needed), free, and the domain's already on Cloudflare so
+it's not really adding a new third party. Gives page-level breakdown
+(top pages, referrers), which is what was asked for over just a raw
+visitor count.
+- [ ] Dinesh creates a Web Analytics site in the Cloudflare dashboard,
+      grabs the JS snippet/token
+- [ ] Claude adds the snippet to every page (same pattern as favicon/OG
+      tags — one shared insertion point, not templated, so it's a
+      find-and-replace across all HTML files)
+- [ ] Verify it's tracking (Cloudflare dashboard shows hits) before
+      considering this done
 
 ### Phase 4 — RAG chat bot + voice bot ("talk to my portfolio")
 Goal: let visitors ask a bot questions and have it answer as/about
